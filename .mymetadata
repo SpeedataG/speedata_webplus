@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="webplus"
+  id="myeclipse.1484059861224"
+  context-root="/webplus"
+  j2ee-spec="1.7"
+  archive="webplus.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
