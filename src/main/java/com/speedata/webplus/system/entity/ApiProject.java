@@ -31,6 +31,7 @@ public class ApiProject implements java.io.Serializable {
 	private Timestamp createTime;
 	private Timestamp updateTime;
 	private Set<ApiInterface> apiInterfaces = new HashSet<ApiInterface>(0);
+	private Set<ApiMenu> apiMenus = new HashSet<ApiMenu>(0);
 	// Constructors
 
 	/** default constructor */
@@ -42,11 +43,18 @@ public class ApiProject implements java.io.Serializable {
 	public Set<ApiInterface> getApiInterfaces() {
 		return apiInterfaces;
 	}
-
+	
 	public void setApiInterfaces(Set<ApiInterface> apiInterfaces) {
 		this.apiInterfaces = apiInterfaces;
 	}
-
+	@OrderBy("sort")
+	@OneToMany(  cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "apiProject")
+	public Set<ApiMenu> getApiMenus() {
+		return apiMenus;
+	}
+	public void setApiMenus(Set<ApiMenu> apiMenus) {
+		this.apiMenus = apiMenus;
+	}
 	/** minimal constructor */
 	public ApiProject(Timestamp createTime, Timestamp updateTime) {
 		this.createTime = createTime;

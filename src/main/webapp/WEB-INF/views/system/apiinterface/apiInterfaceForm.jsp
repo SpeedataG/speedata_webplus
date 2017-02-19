@@ -45,8 +45,8 @@
 							</select></td>
 								<td>排序：</td>
 							<td><input type="text" id="sort"
-								name="sort" class="input small easyui-numberbox" style="width:140px;"
-								value="${apiInterface.sort}" /></td>
+								name="sort" class="input small easyui-numberbox " precision="0"  style="width:140px;"
+								value="${apiInterface.sort}" data-options="required:'required',validType:'length[0,3]'" /></td>
 						</tr>
 						<tr>
 							<td>所属项目：</td>

@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -29,7 +32,8 @@ public class ApiMenu implements java.io.Serializable {
 	private String remark;
 	private Timestamp createTime;
 	private Timestamp updateTime;
-    private  Integer sort;
+    private Integer sort;
+    private ApiProject apiProject;
 	// Constructors
 
 	private List<ApiMenu> childlist=new ArrayList<ApiMenu>();
@@ -55,7 +59,14 @@ public class ApiMenu implements java.io.Serializable {
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 	}
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id")
+	public ApiProject getApiProject() {
+		return apiProject;
+	}
+	public void setApiProject(ApiProject apiProject) {
+		this.apiProject=apiProject;
+	}
 	// Property accessors
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

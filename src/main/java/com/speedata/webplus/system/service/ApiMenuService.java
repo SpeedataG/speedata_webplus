@@ -67,7 +67,7 @@ public class ApiMenuService extends BaseService<ApiMenu, Integer> {
 
 		apiMenuDao.delete(id);
 	}
-	public List<ApiMenu> getlist(Integer parentId) {
+	public List<ApiMenu> getlist(Integer parentId,Integer projectId) {
 		Finder finder = new Finder("from ApiMenu where  ");
 		
 		if(parentId.equals(0)){
@@ -76,6 +76,8 @@ public class ApiMenuService extends BaseService<ApiMenu, Integer> {
 			finder.append(" parentId=:parentId");
 			finder.setParam("parentId", parentId);
 		}
+		finder.append(" and apiProject.id=:projectId");
+		finder.setParam("projectId", projectId);
 		finder.append(" order by sort ");
 		return apiMenuDao.find(finder);
 	}

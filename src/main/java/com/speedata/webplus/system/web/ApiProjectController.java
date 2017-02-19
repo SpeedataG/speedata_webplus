@@ -176,9 +176,9 @@ public class ApiProjectController extends BaseController {
 		ApiProject project = apiProjectService.get(id);
 		// List<ApiInterface>interfacelist=apiInterfaceService.getlist(id);
 
-		List<ApiMenu> menu_list = apiMenuService.getlist(0);
+		List<ApiMenu> menu_list = apiMenuService.getlist(0,project.getId());
 		for (ApiMenu menu : menu_list) {
-			List<ApiMenu> child_list = apiMenuService.getlist(menu.getId());
+			List<ApiMenu> child_list = apiMenuService.getlist(menu.getId(),project.getId());
 			menu.setChildlist(child_list);
 		}
 		map.put("menuList",menu_list);

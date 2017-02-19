@@ -22,9 +22,11 @@ import com.speedata.webplus.common.persistence.Page;
 import com.speedata.webplus.common.persistence.PropertyFilter;
 import com.speedata.webplus.common.web.BaseController;
 import com.speedata.webplus.system.entity.ApiMenu;
+import com.speedata.webplus.system.entity.ApiProject;
 import com.speedata.webplus.system.entity.Permission;
 import com.speedata.webplus.system.entity.tree;
 import com.speedata.webplus.system.service.ApiMenuService;
+import com.speedata.webplus.system.service.ApiProjectService;
 
 
 /**
@@ -36,6 +38,8 @@ public class ApiMenuController extends BaseController {
 
 	@Autowired
 	private ApiMenuService apiMenuService;
+	@Autowired
+	private ApiProjectService apiProjectService;
 
 	/**
 	 * 默认页面
@@ -79,7 +83,10 @@ public class ApiMenuController extends BaseController {
 	@RequiresPermissions("sys:apiMenu:add")
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	@ResponseBody
-	public String create(@Valid ApiMenu apiMenu, Model model) {
+	public String create(@Valid ApiMenu apiMenu,Integer projectId, Model model) {
+		System.out.print("projectId:"+projectId);
+		ApiProject project=apiProjectService.get(projectId);
+		apiMenu.setApiProject(project);
 		apiMenuService.save(apiMenu);
 		return "success";
 	}
@@ -97,7 +104,9 @@ public class ApiMenuController extends BaseController {
 	@RequiresPermissions("sys:apiMenu:update")
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
-	public String update(@Valid @ModelAttribute @RequestBody ApiMenu apiMenu,Model model) {
+	public String update(@Valid @ModelAttribute @RequestBody ApiMenu apiMenu,Integer projectId,Model model) {
+		ApiProject project=apiProjectService.get(projectId);
+		apiMenu.setApiProject(project);
 		apiMenuService.update(apiMenu);
 		return "success";
 	}

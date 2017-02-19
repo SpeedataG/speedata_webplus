@@ -11,6 +11,9 @@ public class tree implements java.io.Serializable {
 	private String url;
 	private String icon;
 	private String text;
+	private String projectName;
+	
+
 	private Timestamp createTime;
 	private Timestamp updateTime;
 
@@ -109,7 +112,13 @@ public class tree implements java.io.Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getProjectName() {
+		return projectName;
+	}
 
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
 	private String description;
 	private String state;
 }
